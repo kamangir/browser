@@ -1,0 +1,6 @@
+__pycache__
+*.log
+cookie.json
+*.pycookie
+archive
+static

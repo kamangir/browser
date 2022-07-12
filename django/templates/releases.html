@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+<center>
+    {% autoescape off %}
+    {{table}}
+    {% endautoescape %}
+</center>
+{% endblock %}

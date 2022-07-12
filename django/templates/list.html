@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+| {{title_postfix}}
+{% endblock %}
+
+{% block body %}
+<left>
+    <div class="container">
+        <ul>
+            {% for item, url in items_n_urls %}
+            <div class="column">
+                <li><a href="{{url}}">{{item|safe}}</a></li>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+</left>
+{% endblock %}

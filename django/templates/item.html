@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+| {{title_postfix}}
+{% endblock %}
+
+{% block body %}
+<left>
+    <div class="container">
+        {{content|safe}}
+    </div>
+</left>
+{% endblock %}

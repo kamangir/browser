@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="el">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {{abcli_fullname}}
+        {% block title %}
+        {% endblock %}
+        {% if autorefresh > -1 %}
+        *
+        {% endif %}
+    </title>
+    <!--<link rel='stylesheet' href="{% static 'css/styles.css' %}" />-->
+    {% if autorefresh > -1 %}
+    <meta http-equiv="refresh" content="{{autorefresh}}">
+    {% endif %}
+    {% block head %}
+    {% endblock %}
+</head>
+
+<header>
+    <left>
+        <h1><a href="/">{{abcli_fullname}}</a> | <a href="/releases">releases</a> | <a href="/help">?</a> </h1>
+    </left>
+    {% for key, value in description.items %}
+    <left>
+        {{ key|safe }}: {{ value|safe }}<br />
+    </left>
+    {% endfor %}
+    {% block header %}
+    {% endblock %}
+</header>
+
+<body style="background-color:gray;">
+    {% block body %}
+    {% endblock %}
+</body>
+
+<footer>
+    {% block footer %}
+    {% endblock %}
+</footer>
+
+</html>
