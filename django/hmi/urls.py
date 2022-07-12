@@ -13,11 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os.path
 from django.contrib import admin
 from django.urls import include, path
 import browse.views
+from abcli import file
 from abcli import plugins
 from abcli import keywords
+
+external_plugins = file.load_json(
+    os.path.join(
+        os.getenv("abcli_path_bash"),
+        "bootstrap/config/external_plugins.json",
+    ),
+    civilized=True,
+)[1]
 
 
 urlpatterns = [
@@ -27,7 +37,10 @@ urlpatterns = [
     path("object/<path:object_path>", browse.views.view_object),
     path("tag/<str:tag>", browse.views.view_tag),
 ] + [
-    path(f"{keywords.pack(plugin)}/", include(f"{plugin}.urls"))
+    path(
+        f"{keywords.pack(plugin)}/",
+        include(f"{external_plugins[plugin].get('python_module',plugin)}.urls"),
+    )
     for plugin in plugins.list_of_external(tagged=True)
     if plugin != "browser"
 ]
