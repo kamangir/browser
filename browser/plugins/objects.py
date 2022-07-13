@@ -66,10 +66,14 @@ def view_object(request, object_path):
         )
         if file.extension(thing) in "jpg,png,jpeg".split(","):
             items += [html.add_cloud_image(f"{object_prefix}/{thing}", prefix=prefix)]
+            urls += [
+                "http://127.0.0.1:8000/static/{}".format(
+                    f"{object_prefix}/{thing}".replace("/", "-")
+                )
+            ]
         else:
             items += [html.add_cloud_image_("folder.png", prefix=prefix)]
-
-        urls += [f"/object/{thing}"]
+            urls += [f"/object/{thing}"]
 
     return render(
         request,
