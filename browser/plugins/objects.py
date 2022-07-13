@@ -71,6 +71,7 @@ def view_object(request, object_path):
                 html.add_cloud_image(
                     f"{object_prefix}/{thing}",
                     prefix=prefix,
+                    width="100%" if is_single_object else "16%",
                 )
             ]
             if file.extension(thing) in "jpg,png,jpeg".split(",")
@@ -78,6 +79,7 @@ def view_object(request, object_path):
                 html.add_cloud_image_(
                     "folder.png",
                     prefix=prefix,
+                    width="100%" if is_single_object else "16%",
                 )
             ]
         )
@@ -100,6 +102,9 @@ def view_object(request, object_path):
             "title_postfix": " | ".join(object_path.split("/")),
             "description": add_urls(description, object_name),
             "items_n_urls": zip(items, urls),
+            "content": " ".join(
+                [f'<a href="{url}">{item}</a>' for item, url in zip(items, urls)]
+            ),
             "autorefresh": int(
                 request.GET.get("autorefresh", str(autorefresh))
                 if "open" in list_of_tags
