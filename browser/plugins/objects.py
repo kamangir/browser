@@ -85,12 +85,16 @@ def view_object(request, object_path):
                     if thing_is_log(thing)
                     else "json.png"
                     if thing.endswith(".json")
+                    else "numpy.png"
+                    if thing.endswith(".pyndarray")
                     else "folder.png",
                     prefix=prefix,
                     width="100%" if is_single_object else html.default_image_width,
                 )
             ]
         )
+
+        storage.download_file(f"{object_prefix}/{thing}", filename="static")
 
         urls += (
             [
@@ -99,6 +103,8 @@ def view_object(request, object_path):
                 )
             ]
             if is_single_object
+            or thing_is_log(thing)
+            or file.extension(thing) in "json,pyndarray".split(",")
             else [f"/object/{thing}"]
         )
 
