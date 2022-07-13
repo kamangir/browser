@@ -60,6 +60,10 @@ def view_object(request, object_path):
     list_of_tags = tags.get(object_name)
     description.update({"tags": list_of_tags})
 
+    def thing_is_log(thing):
+        thing = thing.split("/")
+        return False if len(thing) != 2 else thing[0] == thing[1]
+
     items = []
     urls = []
     for thing in content:
@@ -77,7 +81,11 @@ def view_object(request, object_path):
             if file.extension(thing) in "jpg,png,jpeg".split(",")
             else [
                 html.add_cloud_image_(
-                    "json.png" if thing.endswith(".json") else "folder.png",
+                    "log.png"
+                    if thing_is_log(thing)
+                    else "json.png"
+                    if thing.endswith(".json")
+                    else "folder.png",
                     prefix=prefix,
                     width="100%" if is_single_object else html.default_image_width,
                 )
