@@ -1,6 +1,6 @@
 name = "browser"
 
-version = "1.1.124"
+version = "1.1.125"
 
 description = "a browser plugin for abcli."
 
