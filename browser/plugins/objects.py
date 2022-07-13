@@ -18,9 +18,11 @@ def view_object(request, object_path):
     object_name = object_path.split("/")[0]
     logger.info(f"browser.view_object({object_path})")
 
+    is_single_object = storage.exists(object_path)
+
     content = (
         [object_path]
-        if storage.exists(object_path)
+        if is_single_object
         else [
             os.path.join(object_path, thing)
             for thing in storage.list_of_objects(
@@ -64,20 +66,35 @@ def view_object(request, object_path):
         prefix = "/".join(
             (2 + len([char for char in thing if char == "/"])) * [".."] + [""]
         )
-        if file.extension(thing) in "jpg,png,jpeg".split(","):
-            items += [html.add_cloud_image(f"{object_prefix}/{thing}", prefix=prefix)]
-            urls += [
+        items += (
+            [
+                html.add_cloud_image(
+                    f"{object_prefix}/{thing}",
+                    prefix=prefix,
+                )
+            ]
+            if file.extension(thing) in "jpg,png,jpeg".split(",")
+            else [
+                html.add_cloud_image_(
+                    "folder.png",
+                    prefix=prefix,
+                )
+            ]
+        )
+
+        urls += (
+            [
                 "http://127.0.0.1:8000/static/{}".format(
                     f"{object_prefix}/{thing}".replace("/", "-")
                 )
             ]
-        else:
-            items += [html.add_cloud_image_("folder.png", prefix=prefix)]
-            urls += [f"/object/{thing}"]
+            if is_single_object
+            else [f"/object/{thing}"]
+        )
 
     return render(
         request,
-        "grid.html",
+        "item.html" if is_single_object else "grid.html",
         {
             "abcli_fullname": fullname(),
             "title_postfix": " | ".join(object_path.split("/")),
