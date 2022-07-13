@@ -94,7 +94,11 @@ def view_object(request, object_path):
             ]
         )
 
-        storage.download_file(f"{object_prefix}/{thing}", filename="static")
+        storage.download_file(
+            f"{object_prefix}/{thing}",
+            filename="static",
+            civilized=True,
+        )
 
         urls += (
             [
