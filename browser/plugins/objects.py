@@ -77,7 +77,7 @@ def view_object(request, object_path):
             if file.extension(thing) in "jpg,png,jpeg".split(",")
             else [
                 html.add_cloud_image_(
-                    "folder.png",
+                    "json.png" if thing.endswith(".json") else "folder.png",
                     prefix=prefix,
                     width="100%" if is_single_object else html.default_image_width,
                 )
