@@ -71,7 +71,7 @@ def view_object(request, object_path):
                 html.add_cloud_image(
                     f"{object_prefix}/{thing}",
                     prefix=prefix,
-                    width="100%" if is_single_object else "16%",
+                    width="100%" if is_single_object else html.default_image_width,
                 )
             ]
             if file.extension(thing) in "jpg,png,jpeg".split(",")
@@ -79,7 +79,7 @@ def view_object(request, object_path):
                 html.add_cloud_image_(
                     "folder.png",
                     prefix=prefix,
-                    width="100%" if is_single_object else "16%",
+                    width="100%" if is_single_object else html.default_image_width,
                 )
             ]
         )

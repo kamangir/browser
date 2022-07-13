@@ -11,6 +11,8 @@ logger = logging.getLogger(__name__)
 
 abcli_path_static = os.getenv("abcli_path_static")
 
+default_image_width = "16%"
+
 
 def add_cloud_image(
     object_name,
@@ -126,7 +128,7 @@ def add_cloud_image_(
     border=False,
     height="",
     prefix="",
-    width="16%",
+    width=default_image_width,
 ):
     """add cloud image, internal version.
 
@@ -135,7 +137,7 @@ def add_cloud_image_(
         border (bool, optional): add border. Defaults to False.
         height (str, optional): height. Defaults to "".
         prefix (str, optional): prefix. Defaults to "".
-        width (str, optional): width. Defaults to "16%".
+        width (str, optional): width. Defaults to default_image_width.
 
     Returns:
         bool: success.
@@ -157,7 +159,7 @@ def add_local_image(
     border=False,
     height="",
     prefix="",
-    width="16%",
+    width=default_image_width,
 ):
     """add local image.
 
@@ -166,7 +168,7 @@ def add_local_image(
         border (bool, optional): add border. Defaults to False.
         height (str, optional): height. Defaults to "".
         prefix (str, optional): prefix. Defaults to "".
-        width (str, optional): width. Defaults to "16%".
+        width (str, optional): width. Defaults to default_image_width.
 
     Returns:
         bool: success
