@@ -21,14 +21,6 @@ from abcli import file
 from abcli import plugins
 from abcli import keywords
 
-external_plugins = file.load_json(
-    os.path.join(
-        os.getenv("abcli_path_bash"),
-        "bootstrap/config/external_plugins.json",
-    ),
-    civilized=True,
-)[1]
-
 
 urlpatterns = [
     path("", browse.views.view_home, name="homepage"),
@@ -39,8 +31,8 @@ urlpatterns = [
 ] + [
     path(
         f"{keywords.pack(plugin)}/",
-        include(f"{external_plugins[plugin].get('python_module',plugin)}.urls"),
+        include(f"{plugin}.urls"),
     )
-    for plugin in plugins.list_of_external(tagged=True)
+    for plugin in plugins.list_of_external()
     if plugin != "browser"
 ]
