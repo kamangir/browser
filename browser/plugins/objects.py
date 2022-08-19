@@ -53,7 +53,7 @@ def view_object(request, object_path):
     description.update(
         {
             string.after(keyword, f"{object_name}."): value
-            for keyword, value in cache.search(f"{object_name}.%").items()
+            for keyword, value in functions.search(f"{object_name}.%").items()
         }
     )
 

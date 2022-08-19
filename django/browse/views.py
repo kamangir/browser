@@ -1,9 +1,8 @@
-from . import *
 from browser.plugins.objects import *
 from browser.plugins.tags import *
 from browser.utils import *
 from browser import html
-from abcli.plugins.message.agent import instance as messenger
+from abcli.plugins.message.messenger import instance as messenger
 import abcli.logging
 import logging
 
