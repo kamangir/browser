@@ -25,7 +25,7 @@ def add_cloud_image(
     """add cloud image to web page.
 
     Args:
-        object_name (_type_): _description_
+        object_name (str): object name.
         alternative (str, optional): alternative. Defaults to "". "object_name" uses object_name.
         overwrite (bool, optional): overwrite. Defaults to False.
         thumbnail (bool, optional): use thumbnail. Defaults to False.
@@ -164,7 +164,7 @@ def add_local_image(
     """add local image.
 
     Args:
-        filename (_type_): _description_
+        filename (str): filename.
         border (bool, optional): add border. Defaults to False.
         height (str, optional): height. Defaults to "".
         prefix (str, optional): prefix. Defaults to "".
