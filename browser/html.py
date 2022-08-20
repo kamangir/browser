@@ -105,7 +105,7 @@ def add_cloud_image(
                 storage.list_of_objects("/".join(alternative.split("/")[1:-1]))
             )
             if file.extension(thing) in "jpg,jpeg,png".split(",")
-            and "thumbnail" not in file.name_of(thing)
+            and "thumbnail" not in file.name(thing)
         ]
         object_name = "/".join(
             alternative.split("/")[:-1] + [(list_of_files + ["void"])[0]]
