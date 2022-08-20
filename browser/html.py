@@ -9,7 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-abcli_path_static = os.getenv("abcli_path_static")
+abcli_path_static = os.getenv("abcli_path_static", "")
 
 default_image_width = "16%"
 
@@ -188,7 +188,7 @@ def add_local_image(
         else:
             image_filename = string.after(
                 filename,
-                os.getenv("abcli_object_root"),
+                os.getenv("abcli_object_root", ""),
             ).replace("/", "-")
 
             filename_ = os.path.join(

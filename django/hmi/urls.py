@@ -22,7 +22,7 @@ from abcli import plugins
 from abcli import keywords
 
 
-abcli_path_git = os.getenv("abcli_path_git")
+abcli_path_git = os.getenv("abcli_path_git", "")
 
 urlpatterns = [
     path("", browse.views.view_home, name="homepage"),
