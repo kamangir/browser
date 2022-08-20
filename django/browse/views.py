@@ -1,8 +1,9 @@
-from browser.plugins.objects import *
+import abcli
+from abcli.plugins.message.messenger import instance as messenger
+from browser.objects import *
 from browser.plugins.tags import *
 from browser.utils import *
 from browser import html
-from abcli.plugins.message.messenger import instance as messenger
 import abcli.logging
 import logging
 
@@ -17,7 +18,7 @@ def view_help(request):
         request,
         "home.html",
         {
-            "abcli_fullname": fullname(),
+            "abcli_fullname": abcli.fullname(),
             "content": "<br/>".join(
                 [
                     '<a href="/Kanata">Kanata</a>',
@@ -50,8 +51,10 @@ def view_home(request, *args, **kwargs):
         request,
         "grid.html",
         {
-            "abcli_fullname": fullname(),
-            "autorefresh": int(request.GET.get("autorefresh", str(autorefresh))),
+            "abcli_fullname": abcli.fullname(),
+            "autorefresh": int(
+                request.GET.get("autorefresh", str(AUTO_REFRESH_SECONDS))
+            ),
             "description": add_urls({}),
             "title_postfix": "home",
             "items_n_urls": zip(

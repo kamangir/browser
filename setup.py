@@ -1,11 +1,11 @@
 from setuptools import setup
 
-from browser import *
+from browser import NAME, VERSION
 
 setup(
-    name=name,
+    name=NAME,
     author="kamangir",
-    version=version,
-    description=description,
-    packages=[name],
+    version=VERSION,
+    description="a browser plugin for abcli.",
+    packages=[NAME],
 )

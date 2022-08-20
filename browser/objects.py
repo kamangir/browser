@@ -1,13 +1,12 @@
-import math
 import os.path
-from .. import *
-from .. import html
-from ..utils import *
 from abcli import file
 from abcli.plugins import tags
 from abcli.plugins import relations
 from abcli.plugins.storage import instance as storage
 from abcli.plugins.storage import object_prefix
+from . import html
+from .consts import *
+from .utils import *
 from abcli import logging
 import logging
 
@@ -30,7 +29,7 @@ def view_object(request, object_path):
                 if not object_path.endswith("/")
                 else object_path,
                 include_folders=True,
-                count=int(request.GET.get("count", str(item_per_page))),
+                count=int(request.GET.get("count", str(ITEM_PER_PAGE))),
             )
         ]
     )
@@ -124,7 +123,7 @@ def view_object(request, object_path):
                 [f'<a href="{url}">{item}</a>' for item, url in zip(items, urls)]
             ),
             "autorefresh": int(
-                request.GET.get("autorefresh", str(autorefresh))
+                request.GET.get("autorefresh", str(AUTO_REFRESH_SECONDS))
                 if "open" in list_of_tags
                 else "9999999"
             ),
