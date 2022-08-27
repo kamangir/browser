@@ -18,7 +18,7 @@ function abcli_browser() {
     if [ "$task" == "host" ] ; then
         rm -rf $abcli_path_static
         mkdir -p $abcli_path_static
-        cp -v $abcli_path_git/browser/abcli/assets/*.png $abcli_path_static
+        cp -v $abcli_path_git/browser/.abcli/assets/*.png $abcli_path_static
 
         local options=$2
         local install=$(abcli_option_int "$options" "install" 0)
