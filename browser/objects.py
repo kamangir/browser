@@ -5,7 +5,7 @@ from abcli.plugins import relations
 from abcli.plugins.storage import instance as storage
 from abcli.plugins.storage import object_prefix
 from . import html
-from .consts import *
+from .constants import *
 from .utils import *
 from abcli import logging
 import logging
