@@ -23,7 +23,7 @@ function abcli_browser() {
         local options=$2
         local install=$(abcli_option_int "$options" "install" 0)
 
-        if [ "$install" == "1" ] ; then
+        if [ "$install" == 1 ] ; then
             python3 -m pip install Django
 
             pushd $abcli_path_git/browser > /dev/null
