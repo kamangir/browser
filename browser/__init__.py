@@ -1,5 +1,5 @@
 NAME = "browser"
 
-VERSION = "7.146.1"
+VERSION = "7.147.1"
 
 from .constants import *

@@ -40,7 +40,7 @@ function abcli_browse() {
         return
     fi
 
-    local object=$(abcli_clarify_object "$1" $abcli_object)
-    local url=http://127.0.0.1:$port/object/$object
+    local object_name=$(abcli_clarify_object $1 .)
+    local url=http://127.0.0.1:$port/object/$object_name
     abcli_browse_url $url
 }
