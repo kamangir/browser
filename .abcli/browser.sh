@@ -21,7 +21,7 @@ function abcli_browse() {
         cp -v $abcli_path_git/browser/.abcli/assets/*.png $abcli_path_static
 
         local options=$2
-        local install=$(abcli_option_int "$options" "install" 0)
+        local install=$(abcli_option_int "$options" install 0)
 
         if [ "$install" == 1 ] ; then
             python3 -m pip install Django
