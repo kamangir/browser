@@ -6,9 +6,9 @@ function abcli_browse() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ "$task" == "help" ] ; then
-        abcli_help_line "abcli browse [object_1]" \
+        abcli_show_usage "abcli browse [object_1]" \
             "open [object_1] in browser."
-        abcli_help_line "abcli browse host [install]" \
+        abcli_show_usage "abcli browse host [install]" \
             "[install and] host browser."
         return
     fi
