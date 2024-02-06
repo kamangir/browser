@@ -3,6 +3,7 @@ import os
 import os.path
 from abcli import file
 from abcli.plugins.storage import instance as storage
+from abcli.path import abcli_object_root
 from abcli import string
 from abcli import logging
 import logging
@@ -188,7 +189,7 @@ def add_local_image(
         else:
             image_filename = string.after(
                 filename,
-                os.getenv("abcli_object_root", ""),
+                abcli_object_root,
             ).replace("/", "-")
 
             filename_ = os.path.join(
